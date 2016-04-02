@@ -1,12 +1,12 @@
 (defun набор (x) (_set () x))
 
 (defun _set (a b)
-	(cond ((car-listp b) (_set (_set a (car b)) (cdr b)))
+	(cond ((first-listp b) (_set (_set a (first b)) (rest b)))
 		((null b) a)
-		(t (_set (append a (list (car b))) (cdr b)))))
+		(t (_set (append a (list (first b))) (rest b)))))
 
-(defun car-listp (a)
-	(and (listp (car a)) (not (null a))))
+(defun first-listp (a)
+	(and (listp (first a)) (not (null a))))
 
 (print (набор '(A B C D E)))
 (print (набор (list 'A 'B (list) 'D 'E)))
